@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+	<xs:element name="comics">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="heroes" type="heroesType"/>
+				<xs:element name="origin" type="originType"/>
+				<xs:element name="formats" type="formatsType"/>
+				<xs:element name="specialties" type="specialtiesType"/>
+				<xs:element name="ages" type="agesType"/>
+				<xs:element name="favourites" type="favouritesType"/>
+				<xs:element name="sources" type="sourcesType"/>
+			</xs:sequence>
+			<xs:attribute name="language">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[a-zA-z]{2}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	
+	<xs:complexType name="heroesType">
+		<xs:sequence>
+			<xs:element name="hero" type="heroType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="heroType">
+		<xs:sequence>
+			<xs:group ref="heroGroup"/>
+			<xs:element name="introduction" type="introductionType"/>
+		</xs:sequence>
+		<xs:attribute ref="brand"/>
+	</xs:complexType>
+
+	<xs:group name="heroGroup">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="superpower" type="xs:string"/>
+			<xs:element name="image" type="linkType"/>
+		</xs:sequence>		
+	</xs:group>
+
+	<xs:complexType name="introductionType">
+		<xs:sequence>
+			<xs:element name="date" type="introductionDateType"/>
+			<xs:element ref="age"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="introductionDateType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([a-zA-Z])* [0-9]{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<xs:complexType name="originType">
+		<xs:sequence>
+			<xs:element name="country" type="countryType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="countryType">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="term" type="xs:string"/>
+		</xs:sequence>
+		<xs:attribute name="origin" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="english"/>
+					<xs:enumeration value="non-english"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+
+
+	<xs:complexType name="formatsType">
+		<xs:sequence>
+			<xs:element name="format" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="most-popular" type="xs:string"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="specialtiesType">
+		<xs:sequence>
+			<xs:element name="writer" type="specialtyType"/>
+			<xs:element name="artist" type="specialtyType"/>
+			<xs:element name="letterer" type="specialtyType"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="specialtyType">
+		<xs:sequence>
+			<xs:element name="job" type="xs:string"/>
+			<xs:element name="difficulty">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="agesType">
+		<xs:sequence>
+			<xs:element ref="age" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+
+
+	<xs:complexType name="favouritesType">
+		<xs:choice>
+			<xs:element name="comic" type="comicType"/>
+			<xs:element name="collection">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="author" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+		<xs:attribute name="title">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="20"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute ref="brand"/>
+	</xs:complexType>
+
+	<xs:complexType name="comicType">
+		<xs:sequence>
+			<xs:element name="issues">
+				<xs:simpleType>
+					<xs:restriction>
+						<xs:simpleType>
+							<xs:list>
+								<xs:simpleType>
+									<xs:restriction base="xs:integer">
+										<xs:minInclusive value="0"/>
+										<xs:maxExclusive value="1000"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:list>
+						</xs:simpleType>
+						<xs:maxLength value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="author" type="xs:string"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="comicAttrGroup"/>
+	</xs:complexType>
+
+	<xs:attributeGroup name ="comicAttrGroup">
+		<xs:attribute name="title" type="xs:string"/>
+		<xs:attribute ref="brand"/>
+		<xs:attribute name="id" type="xs:byte"/>
+	</xs:attributeGroup>
+	
+
+	<xs:complexType name="sourcesType" mixed="true">
+		<xs:sequence>
+			<xs:element name="link" type="linkType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	
+	
+	<xs:complexType name="linkType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="source" type="xs:anyURI"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+
+
+	<xs:element name="age" type="ageType"/>
+	<xs:complexType name="ageType" mixed="true">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="duration" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[0-9]{4} - [0-9]{4}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:attribute name="brand" type="brandType"/>
+	<xs:simpleType name="brandType">
+		<xs:union memberTypes="brandShort brandLong"/>
+	</xs:simpleType>
+	<xs:simpleType name="brandShort">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Marvel"/>
+			<xs:enumeration value="DC"/>
+			<xs:enumeration value="Vertigo"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="brandLong">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Marvel Comics"/>
+			<xs:enumeration value="DC Comics"/>
+			<xs:enumeration value="Vertigo Comics"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>

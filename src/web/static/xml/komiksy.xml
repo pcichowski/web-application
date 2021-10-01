@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<comics language="en" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:noNamespaceSchemaLocation="komiksy_schema.xsd">
+	<heroes>
+		<hero brand="Marvel Comics">
+			<name>Spider-Man</name>
+			<superpower>Superhuman agility and strength, spider sense</superpower>
+			<image source="https://upload.wikimedia.org/wikipedia/en/thumb/2/21/Web_of_Spider-Man_Vol_1_129-1.png/250px-Web_of_Spider-Man_Vol_1_129-1.png"></image>
+			<introduction>
+				<date>August 1962</date>
+				<age>Silver Age</age>
+			</introduction>
+		</hero>
+		<hero brand="DC Comics">
+			<name>Superman</name>
+			<superpower>Flying, superhuman strength, speed, indestructibility and many more</superpower>
+			<image source="https://upload.wikimedia.org/wikipedia/en/3/35/Supermanflying.png"></image>
+			<introduction>
+				<date>June 1938</date>
+				<age>Golden Age</age>
+			</introduction>
+		</hero>
+		<hero brand="Marvel">
+			<name>Deadpool</name>
+			<superpower>Regenerative healing factor</superpower>
+			<image source="https://upload.wikimedia.org/wikipedia/en/c/ca/Deadpool.png"></image>
+			<introduction>
+				<date>February 1991</date>
+				<age>Modern Age</age>
+			</introduction>
+		</hero>
+	</heroes>
+	<origin>
+		<country origin ="english">
+			<name>The USA</name>
+			<term>Comic book</term>
+		</country>
+		<country origin ="non-english">
+			<name>Japan</name>
+			<term>Manga</term>
+		</country>
+		<country origin="non-english">
+			<name>Italy</name>
+			<term>Fumetti</term>
+		</country>
+	</origin>
+	<formats>
+		<format most-popular="yes">Comic book</format>
+		<format>Gag cartoons</format>
+		<format>Comic strip</format>
+		<format>Webcomic</format>
+	</formats>
+	<specialties>
+		<writer>
+			<job>Scripts the plot, dialogue and action</job>
+			<difficulty>7</difficulty>
+		</writer>
+		<artist>
+			<job>Handles the visuals, which include sketching, inking and colouring the work</job>
+			<difficulty>10</difficulty>
+		</artist>
+		<letterer>
+			<job>Fills speech balloons and captions with the dialogue and other words meant to be read</job>
+			<difficulty>4</difficulty>
+		</letterer>
+	</specialties>
+	<ages>
+		<age>
+			<name>Golden Age</name>
+			<duration>1938 - 1951</duration>
+		</age>
+		<age>
+			<name>Silver Age</name>
+			<duration>1956 - 1970</duration>
+		</age>
+		<age>
+			<name>Bronze Age</name>
+			<duration>1970 - 1985</duration>
+		</age>
+		<age>
+			<name>Modern Age</name>
+			<duration>1985 - 2020</duration>
+		</age>
+	</ages>
+	<favourites>
+		<comic title="Deadpool" brand="Marvel" id="1">
+			<issues>2 3 5 6 11</issues>
+			<author>Brian Posehn</author>
+		</comic>
+	</favourites>
+	<sources>
+		Useful websites to learn more about comics:
+		<link source="https://www.marvel.com/comics">Marvel Comics</link>
+		<link source="https://www.dccomics.com/comics">DC Comics</link>
+		<link source="https://marvel.fandom.com/wiki/Marvel_Database">Marvel Fandom</link>
+	</sources>
+</comics>
+

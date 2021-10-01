@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!NOTATION dtd PUBLIC "DTD 1.0">
+<!ELEMENT comics (heroes, origin, formats, specialties, ages, favourites, sources)>
+
+<!ELEMENT heroes (hero)*>
+    <!ELEMENT hero (name, superpower, image, introduction)>
+    <!ELEMENT name (#PCDATA)>
+    <!ELEMENT superpower (#PCDATA)>
+    <!ELEMENT image (#PCDATA)>
+    <!ELEMENT introduction (date, age)>
+        <!ELEMENT date (#PCDATA)>
+        <!ELEMENT age (#PCDATA|name|duration)*>
+
+<!ELEMENT origin (country*)>
+    <!ELEMENT country (name, term)>
+        <!ELEMENT term (#PCDATA)>
+
+<!ELEMENT formats (format*)>
+    <!ELEMENT format (#PCDATA)>
+
+<!ELEMENT specialties (writer, artist, letterer)>
+    <!ELEMENT writer (job, difficulty)>
+    <!ELEMENT artist (job, difficulty)>
+    <!ELEMENT letterer (job, difficulty)>
+        <!ELEMENT job (#PCDATA)>
+        <!ELEMENT difficulty (#PCDATA)>
+
+<!ELEMENT ages (age*)>
+ <!ELEMENT duration (#PCDATA)>
+
+<!ELEMENT favourites (comic|collection)>
+    <!ELEMENT comic (issues, author)>
+        <!ELEMENT issues (#PCDATA)>
+        <!ELEMENT author (#PCDATA)>
+    <!ELEMENT collection (issue, author)>
+    <!ELEMENT issue (#PCDATA)>
+
+<!ELEMENT sources (#PCDATA|link)*>
+    <!ELEMENT link (#PCDATA)>
+
+<!ENTITY % att '(yes|no) #IMPLIED'>
+<!ENTITY % eng '(english|non-english) #REQUIRED'>
+<!ENTITY dtd SYSTEM "https://www.w3schools.com/xml/xml_dtd_intro.asp" NDATA dtd>
+<!ENTITY xslt "eXtensible Stylesheet Language Transformations">
+
+<!ATTLIST comics language (en|pl) "en">
+<!ATTLIST hero brand CDATA #REQUIRED>
+<!ATTLIST format most-popular %att;>
+<!ATTLIST country origin %eng;>
+<!ATTLIST image source CDATA #REQUIRED>
+<!ATTLIST link source CDATA #REQUIRED>
+<!ATTLIST comic title CDATA #IMPLIED>
+<!ATTLIST comic brand CDATA #IMPLIED>
+<!ATTLIST comic id CDATA #IMPLIED>

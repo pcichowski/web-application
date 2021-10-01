@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="comics">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="heroes">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="unbounded" name="hero">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="name" type="xs:string" />
+										<xs:element name="superpower" type="xs:string" />
+										<xs:element name="image">
+											<xs:complexType>
+												<xs:attribute name="source" type="xs:string" use="required" />
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="introduction">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="date" type="xs:string" />
+													<xs:element name="age" type="xs:string" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="brand" type="xs:string" use="required" />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="origin">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="unbounded" name="country">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="name" type="xs:string" />
+										<xs:element name="term" type="xs:string" />
+									</xs:sequence>
+									<xs:attribute name="origin" type="xs:string" use="required" />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="formats">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="unbounded" name="format">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute name="most-popular" type="xs:string" use="optional" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="specialties">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="writer">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="job" type="xs:string" />
+										<xs:element name="difficulty" type="xs:unsignedByte" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="artist">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="job" type="xs:string" />
+										<xs:element name="difficulty" type="xs:unsignedByte" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="letterer">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="job" type="xs:string" />
+										<xs:element name="difficulty" type="xs:unsignedByte" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ages">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="unbounded" name="age">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="name" type="xs:string" />
+										<xs:element name="duration" type="xs:string" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="favourites">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="comic">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="issues" type="xs:string" />
+										<xs:element name="author" type="xs:string" />
+									</xs:sequence>
+									<xs:attribute name="title" type="xs:string" use="required" />
+									<xs:attribute name="brand" type="xs:string" use="required" />
+									<xs:attribute name="id" type="xs:unsignedByte" use="required" />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="sources">
+					<xs:complexType mixed="true">
+						<xs:sequence>
+							<xs:element maxOccurs="unbounded" name="link">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute name="source" type="xs:string" use="required" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="language" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
